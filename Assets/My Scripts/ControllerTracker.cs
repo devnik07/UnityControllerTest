@@ -1,45 +1,28 @@
 using UnityEngine;
 using Valve.VR;
 
-public class ControllerTracker : MonoBehaviour
+public class ControllerTracker2 : MonoBehaviour
 {
-    public uint deviceId = 1;
+    public SteamVR_Action_Pose poseAction;
+    public SteamVR_Action_Vector2 moveAction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (uint i = 0; i < OpenVR.k_unMaxTrackedDeviceCount; i++)
-        {
-            var deviceClass = OpenVR.System.GetTrackedDeviceClass(i);
-            if (deviceClass != ETrackedDeviceClass.Invalid)
-            {
-                Debug.Log($"Device {i}: {deviceClass}");
-            }
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (OpenVR.System != null)
-        {
-            var poses = new TrackedDevicePose_t[OpenVR.k_unMaxTrackedDeviceCount];
-            var gamePoses = new TrackedDevicePose_t[OpenVR.k_unMaxTrackedDeviceCount];
-            
-            OpenVR.Compositor.GetLastPoses(poses, gamePoses);
+        Quaternion q = poseAction.GetLocalRotation(SteamVR_Input_Sources.Any);
+        Vector3 position = poseAction.GetLocalPosition(SteamVR_Input_Sources.Any);
+        Vector2 joystickInput = moveAction.GetAxis(SteamVR_Input_Sources.Any);
 
-            if (poses[deviceId].bDeviceIsConnected && poses[deviceId].bPoseIsValid)
-            {
-                var trackedDevicePose = poses[deviceId];
-                var transformMatrix = new SteamVR_Utils.RigidTransform(trackedDevicePose.mDeviceToAbsoluteTracking);
+        transform.rotation = q;
+        transform.Rotate(90.0f, 0, 0);
+        transform.position = position;
 
-                // Set the GameObject's position and rotation
-                transform.position = transformMatrix.pos;
-                transform.rotation = transformMatrix.rot;
-                transform.Rotate(90.0f, 0, 0);
-                Debug.Log($"{transform.rotation.eulerAngles[0]}, {transform.rotation.eulerAngles[1]}, {transform.rotation.eulerAngles[2]}");
-            }
-        }
+        print(joystickInput);
     }
 }
-               

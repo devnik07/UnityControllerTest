@@ -6,6 +6,10 @@
       "requirement": "suggested"
     },
     {
+      "name": "/actions/steamcontroller/in/move",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/platformer/in/Move",
       "type": "vector2"
     },

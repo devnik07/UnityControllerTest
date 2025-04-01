@@ -24,5 +24,13 @@ namespace Valve.VR
                 return SteamVR_Actions.steamcontroller_Pose;
             }
         }
+        
+        public virtual SteamVR_Action_Vector2 move
+        {
+            get
+            {
+                return SteamVR_Actions.steamcontroller_move;
+            }
+        }
     }
 }

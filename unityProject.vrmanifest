@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.steamcontroller.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Informatik\\Unity_Projects\\SteamController\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Informatik\\Bachelorarbeit\\UnityControllerTest\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "SteamController [Testing]"
