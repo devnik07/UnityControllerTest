@@ -25,11 +25,19 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Vector2 move
+        public virtual SteamVR_Action_Vector2 joystick
         {
             get
             {
-                return SteamVR_Actions.steamcontroller_move;
+                return SteamVR_Actions.steamcontroller_joystick;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean toggleZoom
+        {
+            get
+            {
+                return SteamVR_Actions.steamcontroller_toggleZoom;
             }
         }
     }

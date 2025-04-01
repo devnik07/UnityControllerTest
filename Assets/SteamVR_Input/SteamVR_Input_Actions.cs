@@ -19,7 +19,9 @@ namespace Valve.VR
         
         private static SteamVR_Action_Pose p_steamcontroller_Pose;
         
-        private static SteamVR_Action_Vector2 p_steamcontroller_move;
+        private static SteamVR_Action_Vector2 p_steamcontroller_joystick;
+        
+        private static SteamVR_Action_Boolean p_steamcontroller_toggleZoom;
         
         private static SteamVR_Action_Vector2 p_platformer_Move;
         
@@ -43,11 +45,19 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Vector2 steamcontroller_move
+        public static SteamVR_Action_Vector2 steamcontroller_joystick
         {
             get
             {
-                return SteamVR_Actions.p_steamcontroller_move.GetCopy<SteamVR_Action_Vector2>();
+                return SteamVR_Actions.p_steamcontroller_joystick.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean steamcontroller_toggleZoom
+        {
+            get
+            {
+                return SteamVR_Actions.p_steamcontroller_toggleZoom.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -111,7 +121,8 @@ namespace Valve.VR
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
                     SteamVR_Actions.steamcontroller_Pose,
-                    SteamVR_Actions.steamcontroller_move,
+                    SteamVR_Actions.steamcontroller_joystick,
+                    SteamVR_Actions.steamcontroller_toggleZoom,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -121,7 +132,8 @@ namespace Valve.VR
                     SteamVR_Actions.mixedreality_ExternalCamera};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.steamcontroller_Pose,
-                    SteamVR_Actions.steamcontroller_move,
+                    SteamVR_Actions.steamcontroller_joystick,
+                    SteamVR_Actions.steamcontroller_toggleZoom,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -135,19 +147,21 @@ namespace Valve.VR
                     SteamVR_Actions.steamcontroller_Pose,
                     SteamVR_Actions.mixedreality_ExternalCamera};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
+                    SteamVR_Actions.steamcontroller_toggleZoom,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.buggy_Throttle};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
-                    SteamVR_Actions.steamcontroller_move,
+                    SteamVR_Actions.steamcontroller_joystick,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.buggy_Steering};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
             Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[0];
             Valve.VR.SteamVR_Input.actionsNonPoseNonSkeletonIn = new Valve.VR.ISteamVR_Action_In[] {
-                    SteamVR_Actions.steamcontroller_move,
+                    SteamVR_Actions.steamcontroller_joystick,
+                    SteamVR_Actions.steamcontroller_toggleZoom,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -159,7 +173,8 @@ namespace Valve.VR
         private static void PreInitActions()
         {
             SteamVR_Actions.p_steamcontroller_Pose = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/steamcontroller/in/Pose")));
-            SteamVR_Actions.p_steamcontroller_move = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/steamcontroller/in/move")));
+            SteamVR_Actions.p_steamcontroller_joystick = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/steamcontroller/in/joystick")));
+            SteamVR_Actions.p_steamcontroller_toggleZoom = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/steamcontroller/in/toggleZoom")));
             SteamVR_Actions.p_platformer_Move = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/platformer/in/Move")));
             SteamVR_Actions.p_platformer_Jump = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/platformer/in/Jump")));
             SteamVR_Actions.p_buggy_Steering = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/buggy/in/Steering")));

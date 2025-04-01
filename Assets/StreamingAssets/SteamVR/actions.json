@@ -6,8 +6,12 @@
       "requirement": "suggested"
     },
     {
-      "name": "/actions/steamcontroller/in/move",
+      "name": "/actions/steamcontroller/in/joystick",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/steamcontroller/in/toggleZoom",
+      "type": "boolean"
     },
     {
       "name": "/actions/platformer/in/Move",
