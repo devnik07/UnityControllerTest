@@ -8,6 +8,7 @@ public class ControllerTracker : MonoBehaviour
     public SteamVR_Action_Vector2 joystickAction;
     public float zoomSpeed = 0.04f;
 
+    private float joystickDeadzone = 0.1f;
     private bool zoomModeOn;
     private float zoom;
     private float toggleTimeout = 1.0f;
@@ -52,7 +53,7 @@ public class ControllerTracker : MonoBehaviour
 
         if (zoomModeOn) {
             float zoomInput = joystickAction.GetAxis(SteamVR_Input_Sources.Any).y;
-            if (Mathf.Abs(zoomInput) > 0.1f) {
+            if (Mathf.Abs(zoomInput) > joystickDeadzone) {
                 zoom += zoomInput * zoomSpeed;
                 Vector3 newScale = new(zoom, zoom, zoom);
                 transform.localScale = newScale;

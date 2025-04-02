@@ -5,6 +5,7 @@ public class MoveCamera : MonoBehaviour
 {
     public SteamVR_Action_Boolean toggleZoomAction;
     public SteamVR_Action_Vector2 joystickAction;
+    private float joystickDeadzone = 0.1f;
     private float movementSpeed = 2f;
     private float rotationSpeed = 120.0f;
     private bool zoomModeOn;
@@ -37,10 +38,10 @@ public class MoveCamera : MonoBehaviour
 
         if (!zoomModeOn) {
             Vector2 joystickInput = joystickAction.GetAxis(SteamVR_Input_Sources.Any);
-            if (Mathf.Abs(joystickInput.x) <= 0.1f) {
+            if (Mathf.Abs(joystickInput.x) <= joystickDeadzone) {
                 joystickInput.x = 0;
             }
-            if (Mathf.Abs(joystickInput.y) <= 0.1f) {
+            if (Mathf.Abs(joystickInput.y) <= joystickDeadzone) {
                 joystickInput.y = 0;
             }
 
